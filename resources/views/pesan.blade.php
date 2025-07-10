@@ -50,7 +50,6 @@
 
                     @if ($jadwal)
                         {{-- Jika datang dari halaman detail --}}
-                        <input type="hidden" name="tujuan" value="{{ $jadwal->rute }}">
                         <input type="text" class="w-full rounded-xl border-gray-300 shadow-sm bg-gray-100"
                             value="{{ $jadwal->rute }}" disabled>
                     @else
@@ -66,7 +65,14 @@
                     @endif
                 </div>
 
-                <input type="hidden" name="jadwal_id" id="jadwal_id">
+                @if ($jadwal)
+                    {{-- Jika datang dari halaman detail --}}
+                    <input type="hidden" name="jadwal_id" id="jadwal_id" value="{{ $jadwal->id }}">
+                @else
+                    {{-- Jika datang dari form biasa --}}
+                    <input type="hidden" name="jadwal_id" id="jadwal_id">
+                @endif
+
 
                 {{-- Tanggal Keberangkatan --}}
                 <div>
