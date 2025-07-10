@@ -54,6 +54,7 @@ cd projectkel5
 
 ```bash
 composer install
+npm install
 ```
 
 ### 3. Copy File .env & Generate App Key
@@ -93,6 +94,12 @@ php artisan storage:link
 
 ```bash
 php artisan serve
+```
+
+### 8. Buka Terminal Baru
+
+```bash
+npm run dev
 ```
 
 Buka di browser: http://127.0.0.1:8000

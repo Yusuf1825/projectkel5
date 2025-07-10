@@ -38,7 +38,13 @@
             letter-spacing: 1px;
         }
 
-        .nav-links a:hover {
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a:hover,
+        .active {
             background: #f97316;
         }
 
@@ -50,6 +56,29 @@
             text-decoration: none;
             font-weight: 500;
             font-size: 16px;
+        }
+
+        .logout-btn {
+            background-color: #e3342f;
+            color: white;
+            margin-left: 30px;
+            padding: 5px 10px 10px 10px;
+            font-weight: bold;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .logout-btn:hover {
+            background-color: #cc1f1a;
+            transform: translateY(-2px);
+        }
+
+        .logout-btn:active {
+            transform: scale(0.95);
         }
 
         .btn-utama {
@@ -168,8 +197,15 @@
         <div class="logo">Antarkota</div>
         <nav class="nav-links">
             <a href="{{ route('home') }}">Beranda</a>
-            <a href="{{ route('jadwal') }}">Jadwal</a>
+            <a href="{{ route('jadwal') }}" class="active">Jadwal</a>
             <a href="{{ route('pesan') }}">Pesan Tiket</a>
+            @auth
+                <a href="/profile">Profil</a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="logout-btn">Logout</button>
+                </form>
+            @endauth
         </nav>
     </header>
 
