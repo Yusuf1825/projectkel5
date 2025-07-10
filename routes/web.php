@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\PesanController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -15,6 +18,11 @@ Route::middleware('auth')->group(function () {
     // Pemesanan
     Route::get('/pesan', [PesanController::class, 'index'])->name('pesan');
     Route::post('/pesan', [PesanController::class, 'store'])->name('pesan.store');
+
+    // Logout
+    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+        ->middleware('auth')
+        ->name('logout');
 });
 
 // ROUTE LAYANAN — Semua layanan di sini
