@@ -16,9 +16,6 @@
         <form action="{{ route('pesan.store') }}" method="POST" class="bg-white p-8 rounded-2xl shadow-xl space-y-6">
             @csrf
 
-            {{-- Hidden jadwal_id --}}
-            <input type="hidden" name="jadwal_id" value="{{ $jadwal->id ?? '' }}">
-
             {{-- Nama Penumpang --}}
             <div>
                 <label for="nama" class="block text-sm font-semibold text-gray-700 mb-2">Nama Pemesan</label>
@@ -51,7 +48,7 @@
                     @if ($jadwal)
                         {{-- Jika datang dari halaman detail --}}
                         <input type="text" class="w-full rounded-xl border-gray-300 shadow-sm bg-gray-100"
-                            value="{{ $jadwal->rute }}" disabled>
+                            value="{{ $jadwal->rute }}" readonly name="tujuan">
                     @else
                         {{-- Jika tidak dari detail, pilih dari list --}}
                         <select name="tujuan" id="rute" required onchange="setJadwalId(this)"

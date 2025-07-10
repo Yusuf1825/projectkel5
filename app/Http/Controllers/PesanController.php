@@ -21,6 +21,7 @@ class PesanController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $validated = $request->validate([
             'nama' => 'required|string|max:255',
             'asal' => 'required|string|max:255',
