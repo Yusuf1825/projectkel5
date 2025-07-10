@@ -23,6 +23,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
         ->middleware('auth')
         ->name('logout');
+
+    // Eticket
+    Route::get('/eticket/{id}', function ($id) {
+        $pemesanan = \App\Models\Pesan::with('jadwal')->findOrFail($id);
+        return view('eticket', compact('pemesanan'));
+    })->name('eticket');
 });
 
 // ROUTE LAYANAN — Semua layanan di sini
